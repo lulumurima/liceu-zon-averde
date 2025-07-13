@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liceu Zona Verde</title>
+  <style>
+    :root {
+      --vinho: #800020;
+      --amarelo: #FFD700;
+      --branco: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    .menu-lateral {
+      width: 260px;
+      background: var(--vinho);
+      color: var(--branco);
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .logo {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .logo img {
+      max-width: 150px;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-bottom: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li.ativo,
+    nav ul li:hover {
+      color: var(--amarelo);
+      border-left: 4px solid var(--branco);
+      padding-left: 8px;
+      font-weight: bold;
+    }
+
+    .contato-btn {
+      margin-top: auto;
+      padding: 12px;
+      background-color: var(--amarelo);
+      color: var(--vinho);
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contato-btn:hover {
+      background-color: #ffe45c;
+    }
+
+    main {
+      margin-left: 260px;
+      padding: 40px;
+      background: var(--branco);
+      min-height: 100vh;
+      transition: 0.5s ease-in-out;
+    }
+
+    section {
+      margin-bottom: 80px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    section:hover {
+      transform: scale(1.02);
+    }
+
+    h1, h2, h3, h4 {
+      margin-bottom: 15px;
+      color: var(--vinho);
+    }
+
+    p {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    img.galeria-img {
+      width: 200px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    img.galeria-img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: var(--vinho);
+      color: var(--branco);
+      position: relative;
+    }
+
+    .equipa {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .membro-equipa {
+      flex: 1 1 220px;
+      background: var(--branco);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .membro-equipa:hover {
+      transform: translateY(-5px);
+    }
+
+    .membro-equipa img {
+      max-width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .menu-lateral {
+        position: relative;
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      main {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="menu-lateral">
+    <div class="logo">
+      <img src="logo-liceu.png" alt="Logotipo Liceu Zona Verde" />
+    </div>
+    <nav>
+      <ul id="menu">
+        <li class="ativo" data-conteudo="inicio">Início</li>
+        <li data-conteudo="sobre">Sobre Nós</li>
+        <li data-conteudo="eventos">Eventos</li>
+        <li data-conteudo="livros">Livros</li>
+        <li data-conteudo="meios">Meios de Ensino</li>
+        <li data-conteudo="galeria">Galeria</li>
+        <li data-conteudo="contato">Contato</li>
+      </ul>
+    </nav>
+    <button class="contato-btn" id="btnContato">Contato</button>
+  </aside>
+
+  <main id="conteudo-principal">
+    <section>
+      <h1>Bem-vindo ao Liceu Zona Verde</h1>
+      <p>Formando cidadãos para o futuro com base na excelência, ética e inovação.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Todos os direitos reservados - Liceu Zona Verde
+  </footer>
+
+  <script>
+    const menu = document.getElementById('menu');
+    const main = document.getElementById('conteudo-principal');
+
+    const conteudos = {
+      inicio: `
+        <section>
+          <h1>Bem-vindo ao Liceu Zona Verde</h1>
+          <p>Somos uma instituição de ensino comprometida com o futuro, a inovação e o desenvolvimento sustentável.</p>
+        </section>
+      `,
+      sobre: `
+        <section>
+          <h2>Sobre Nós</h2>
+          <p>O Liceu Zona Verde é uma escola de referência que oferece ensino de qualidade em um ambiente moderno e acolhedor.</p>
+          <h3>Quadro Administrativo</h3>
+          <div class="equipa">
+            <div class="membro-equipa">
+              <img src="diretor.jpg" alt="Diretor" />
+              <h4>Diretor</h4>
+              <p>Nome: [Nome do Diretor]</p>
+              <p>Responsável pela direção geral da escola.</p>
+            </div>
+            <div class="membro-equipa">
+              <img src="dap-primario.jpg" alt="DAP Primário" />
+              <h4>DAP Ensino Primário</h4>
+              <p>Nome: [Nome]</p>
+              <p>Coordena o ensino básico da instituição.</p>
+            </div>
+            <div class="membro-equipa">
+              <img src="dap-secundario.jpg" alt="DAP Secundário" />
+              <h4>DAP Ensino Secundário</h4>
+              <p>Nome: [Nome]</p>
+              <p>Supervisiona o ensino médio e projetos pedagógicos.</p>
+            </div>
+            <div class="membro-equipa">
+              <img src="secretaria.jpg" alt="Secretaria" />
+              <h4>Chefe de Secretaria</h4>
+              <p>Nome: [Nome]</p>
+              <p>Administração de documentos e matrículas.</p>
+            </div>
+            <div class="membro-equipa">
+              <img src="tecnico.jpg" alt="Técnico" />
+              <h4>Técnico</h4>
+              <p>Nome: [Nome]</p>
+              <p>Suporte técnico e infraestrutura de TI.</p>
+            </div>
+            <div class="membro-equipa">
+              <img src="imagem.jpg" alt="Imagem" />
+              <h4>Chefe de Imagem</h4>
+              <p>Nome: [Nome]</p>
+              <p>Responsável pela comunicação visual da escola.</p>
+            </div>
+          </div>
+        </section>
+      `,
+      eventos: `
+        <section>
+          <h2>Eventos</h2>
+          <p>Confira os principais eventos realizados e programados pelo Liceu Zona Verde.</p>
+          <ul>
+            <li>Semana da Ciência</li>
+            <li>Feira Cultural</li>
+            <li>Dia da Família</li>
+            <li>Projetos Interdisciplinares</li>
+          </ul>
+        </section>
+      `,
+      livros: `
+        <section>
+          <h2>Livros</h2>
+          <p>Lista de livros recomendados por nível de ensino.</p>
+          <ul>
+            <li>Ensino Primário: Livro A, Livro B</li>
+            <li>Ensino Secundário: Livro C, Livro D</li>
+          </ul>
+        </section>
+      `,
+      meios: `
+        <section>
+          <h2>Meios de Ensino</h2>
+          <p>Conheça os recursos utilizados para enriquecer o processo educativo.</p>
+          <ul>
+            <li>Quadros interativos</li>
+            <li>Laboratórios</li>
+            <li>Biblioteca multimídia</li>
+            <li>Ambiente virtual de aprendizagem</li>
+          </ul>
+        </section>
+      `,
+      galeria: `
+        <section>
+          <h2>Galeria</h2>
+          <div style="display:flex;gap:20px;flex-wrap:wrap">
+            <img src="foto1.jpg" class="galeria-img" alt="Foto 1" />
+            <img src="foto2.jpg" class="galeria-img" alt="Foto 2" />
+            <img src="foto3.jpg" class="galeria-img" alt="Foto 3" />
+          </div>
+        </section>
+      `,
+      contato: `
+        <section>
+          <h2>Contato</h2>
+          <p>Envie um email para: <strong>contato@liceuzonaverde.com</strong></p>
+        </section>
+      `
+    };
+
+    function carregarConteudo(chave) {
+      main.innerHTML = conteudos[chave] || '<section><p>Conteúdo não disponível.</p></section>';
+    }
+
+    carregarConteudo('inicio');
+
+    menu.addEventListener('click', e => {
+      if (e.target.tagName === 'LI') {
+        menu.querySelectorAll('li').forEach(li => li.classList.remove('ativo'));
+        e.target.classList.add('ativo');
+        carregarConteudo(e.target.dataset.conteudo);
+      }
+    });
+
+    document.getElementById('btnContato').addEventListener('click', () => {
+      carregarConteudo('contato');
+    });
+  </script>
+</body>
+</html>
